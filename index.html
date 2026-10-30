@@ -216,14 +216,14 @@
     </style>
 </head>
 <body>
-    <!-- Gift Box Intro (Only shown until recipient taps to open gift & play music) -->
+    <!-- Gift Box Intro (Only shown until girlfriend taps to open gift & play music) -->
     <div id="scanIntroOverlay">
         <div class="intro-chat-card">
-            <div class="msg-bubble" id="introMsg1">Mừng kỉ niệm 1000 ngày 💘</div>
-            <div class="msg-bubble" id="introMsg2">Em có quà tặng anh nè 🎁</div>
-            <div class="msg-bubble" id="introMsg3">Chạm vào trái tim để mở quà nhaaaa 🥰</div>
+            <div class="msg-bubble" id="introMsg1">Mừng kỷ niệm 9 năm yêu nhau 💘</div>
+            <div class="msg-bubble" id="introMsg2">Anh có món quà bí mật tặng em nè 🎁</div>
+            <div class="msg-bubble" id="introMsg3">Em yêu chạm vào trái tim để mở quà nhaaaa 🥰</div>
             <div class="pulse-heart-box" id="tapHeartBox">❤️</div>
-            <button class="open-universe-btn" id="openGiftUniverseBtn">✨ Chạm Để Mở Quà ✨</button>
+            <button class="open-universe-btn" id="openGiftUniverseBtn">✨ Chạm Để Mở Quà Kỷ Niệm 9 Năm ✨</button>
         </div>
     </div>
 
@@ -238,8 +238,8 @@
 
     <script>
         const params = new URLSearchParams(window.location.search);
-        const titleParam = params.get("title") || "Mừng kỉ niệm 1000 ngày 💘";
-        const msg2Param = params.get("msg2") || "Em có quà tặng anh nè 🎁";
+        const titleParam = params.get("title") || "Mừng kỷ niệm 9 năm yêu nhau 💘";
+        const msg2Param = params.get("msg2") || "Anh có món quà bí mật tặng em nè 🎁";
         const wordsParam = params.get("words");
         const currentTheme = params.get("theme") || "both";
         const isInstant = params.get("instant") === "1";
@@ -248,14 +248,18 @@
         document.getElementById("introMsg2").textContent = msg2Param;
 
         const DEFAULT_WORDS = [
-            "Em yêu anh",
-            "Quỳnh Anh",
-            "Đức Huy",
-            "1000 Days",
-            "Happy Anniversary",
-            "Chúc anh luôn vui vẻ",
-            "thành công",
-            "vững vàng"
+            "Anh yêu em",
+            "Kỷ niệm 9 năm yêu nhau",
+            "Happy 9th Anniversary",
+            "Cảm ơn em đã luôn bên anh",
+            "Công chúa của anh",
+            "Chúc em luôn xinh đẹp rạng rỡ",
+            "Luôn vui vẻ và hạnh phúc nhé",
+            "Thương em nhất trên đời",
+            "9 Năm Tình Yêu Trọn Vẹn",
+            "3285 Days Of Love",
+            "Mãi nắm chặt tay nhau em nhé",
+            "Em là điều tuyệt vời nhất"
         ];
 
         const phraseList = wordsParam

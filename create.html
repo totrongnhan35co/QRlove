@@ -115,26 +115,26 @@
             <div class="form-group">
                 <label>Chọn Mẫu Nhanh:</label>
                 <div class="pills-wrap" id="presetPills">
-                    <button class="pill-btn active" data-preset="anniv">💑 Kỷ Niệm 1000 Ngày (Giống Video)</button>
-                    <button class="pill-btn" data-preset="birthday">🎂 Chúc Mừng Sinh Nhật</button>
-                    <button class="pill-btn" data-preset="confess">💌 Tỏ Tình Crush</button>
-                    <button class="pill-btn" data-preset="sorry">🥺 Xin Lỗi Công Chúa</button>
+                    <button class="pill-btn active" data-preset="anniv">💑 Kỷ Niệm 9 Năm Yêu Nhau (Tặng Bạn Gái)</button>
+                    <button class="pill-btn" data-preset="birthday">🎂 Chúc Mừng Sinh Nhật Em Yêu</button>
+                    <button class="pill-btn" data-preset="confess">💌 Lời Thương Gửi Công Chúa</button>
+                    <button class="pill-btn" data-preset="sorry">🥺 Xin Lỗi & Dỗ Ngọt Bé Yêu</button>
                 </div>
             </div>
 
             <div class="form-group">
                 <label>Tin Nhắn Hộp Quà 1:</label>
-                <input type="text" id="msg1Input" value="Mừng kỉ niệm 1000 ngày 💘" class="studio-input">
+                <input type="text" id="msg1Input" value="Mừng kỷ niệm 9 năm yêu nhau 💘" class="studio-input">
             </div>
 
             <div class="form-group">
                 <label>Tin Nhắn Hộp Quà 2:</label>
-                <input type="text" id="msg2Input" value="Em có quà tặng anh nè 🎁" class="studio-input">
+                <input type="text" id="msg2Input" value="Anh có món quà bí mật tặng em nè 🎁" class="studio-input">
             </div>
 
             <div class="form-group">
                 <label>Các Chữ Bay Lơ Lửng Trong Không Gian 3D (Phân cách bằng dấu `|`):</label>
-                <textarea id="wordsInput" rows="3" class="studio-input">Em yêu anh | Quỳnh Anh | Đức Huy | 1000 Days | Happy Anniversary | Chúc anh luôn vui vẻ | thành công | vững vàng</textarea>
+                <textarea id="wordsInput" rows="3" class="studio-input">Anh yêu em | Kỷ niệm 9 năm yêu nhau | Happy 9th Anniversary | Cảm ơn em đã luôn bên anh | Công chúa của anh | Chúc em luôn xinh đẹp rạng rỡ | Luôn vui vẻ và hạnh phúc nhé | Thương em nhất trên đời | 9 Năm Tình Yêu Trọn Vẹn | 3285 Days Of Love | Mãi nắm chặt tay nhau em nhé</textarea>
             </div>
 
             <div class="qr-row">
@@ -159,10 +159,26 @@
 
     <script>
         const PRESETS = {
-            anniv: { m1: "Mừng kỉ niệm 1000 ngày 💘", m2: "Em có quà tặng anh nè 🎁", words: "Em yêu anh | Quỳnh Anh | Đức Huy | 1000 Days | Happy Anniversary | Chúc anh luôn vui vẻ | thành công | vững vàng" },
-            birthday: { m1: "Chúc mừng sinh nhật tình yêu 🎂💖", m2: "Em có món quà bí mật tặng anh nè 🎁", words: "Happy Birthday | Tuổi mới rực rỡ | Yêu anh nhất | Luôn vui vẻ hạnh phúc | Mãi bên nhau nhé" },
-            confess: { m1: "Tớ có điều bí mật muốn nói 💌", m2: "Cậu quét mã QR trái tim này đi nhaaaa 🥰", words: "Làm người yêu tớ nhé | Tớ thích cậu nhiều lắm | I Love You 3000 | Đồng ý nha công chúa" },
-            sorry: { m1: "Đừng giận anh nữa nha công chúa 🥺💗", m2: "Quét mã này xem lời xin lỗi của anh nè 🎁", words: "Anh xin lỗi bé yêu | Đừng giận anh nữa nha | Thương công chúa nhất | Mãi yêu em" }
+            anniv: {
+                m1: "Mừng kỷ niệm 9 năm yêu nhau 💘",
+                m2: "Anh có món quà bí mật tặng em nè 🎁",
+                words: "Anh yêu em | Kỷ niệm 9 năm yêu nhau | Happy 9th Anniversary | Cảm ơn em đã luôn bên anh | Công chúa của anh | Chúc em luôn xinh đẹp rạng rỡ | Luôn vui vẻ và hạnh phúc nhé | Thương em nhất trên đời | 9 Năm Tình Yêu Trọn Vẹn | 3285 Days Of Love | Mãi nắm chặt tay nhau em nhé"
+            },
+            birthday: {
+                m1: "Chúc mừng sinh nhật công chúa của anh 🎂💖",
+                m2: "Anh có món quà bí mật tặng em nè 🎁",
+                words: "Happy Birthday Em Yêu | Tuổi mới luôn xinh đẹp rạng rỡ | Anh yêu em nhất trên đời | Luôn vui vẻ hạnh phúc nhé | Mãi bên nhau em nhé"
+            },
+            confess: {
+                m1: "Gửi người con gái anh thương nhất 💌",
+                m2: "Em quét mã QR trái tim này đi nhaaaa 🥰",
+                words: "Anh yêu em nhiều lắm | Cảm ơn em vì tất cả | Nụ cười của em là nắng | Thương công chúa của anh | Mãi nắm tay nhau nhé"
+            },
+            sorry: {
+                m1: "Đừng giận anh nữa nha công chúa 🥺💗",
+                m2: "Quét mã này xem lời xin lỗi của anh nè 🎁",
+                words: "Anh xin lỗi bé yêu | Đừng giận anh nữa nha | Thương công chúa nhất | Mãi yêu em"
+            }
         };
 
         function getViewerUrls() {
@@ -191,7 +207,7 @@
             const bubbles = [
                 document.getElementById("msg1Input").value,
                 document.getElementById("msg2Input").value,
-                "Anh quét để nhận quà nhaaaa 🥰"
+                "Em quét để nhận quà nhaaaa 🥰"
             ];
             bubbles.forEach((t, i) => {
                 const y = 16 + i * 38;
@@ -266,3 +282,4 @@
     </script>
 </body>
 </html>
+
