@@ -123,6 +123,17 @@
             </div>
 
             <div class="form-group">
+                <label>🔗 Cấu Hình Đường Dẫn Đích (URL) Khi Quét Mã QR:</label>
+                <input type="text" id="customTargetUrlInput" value="https://nhan-we91.onrender.com/" placeholder="Nhập đường dẫn chuyển hướng khi quét mã QR..." class="studio-input">
+                <div class="pills-wrap" id="urlQuickPills" style="margin-top:8px;">
+                    <button class="pill-btn active" data-qurl="https://nhan-we91.onrender.com/">🚀 Render: nhan-we91.onrender.com</button>
+                    <button class="pill-btn" data-qurl="https://nhan-we91.onrender.com/love.html">💘 Render (/love.html)</button>
+                    <button class="pill-btn" data-qurl="https://totrongnhan35co.github.io/QRlove/">🌐 GitHub Pages</button>
+                    <button class="pill-btn" data-qurl="auto-params">✨ Gắn kèm lời chúc tùy chỉnh vào Link</button>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label>Tin Nhắn Hộp Quà 1:</label>
                 <input type="text" id="msg1Input" value="Mừng kỷ niệm 9 năm yêu nhau 💘" class="studio-input">
             </div>
@@ -181,15 +192,20 @@
             }
         };
 
+        let appendParamsToUrl = false;
+
         function getViewerUrls() {
             const m1 = document.getElementById("msg1Input").value.trim();
             const m2 = document.getElementById("msg2Input").value.trim();
             const w = document.getElementById("wordsInput").value.split(/[|\n]+/).map((s) => s.trim()).filter(Boolean).join("|");
-            const defaultW = PRESETS.anniv.words.split(/[|\n]+/).map((s) => s.trim()).filter(Boolean).join("|");
-            const isDefault = m1 === PRESETS.anniv.m1 && m2 === PRESETS.anniv.m2 && w === defaultW;
-            const qs = isDefault ? "" : `?title=${encodeURIComponent(m1)}&msg2=${encodeURIComponent(m2)}&words=${encodeURIComponent(w)}`;
+            const customUrl = (document.getElementById("customTargetUrlInput")?.value || "https://nhan-we91.onrender.com/").trim() || "https://nhan-we91.onrender.com/";
+            const qs = `?title=${encodeURIComponent(m1)}&msg2=${encodeURIComponent(m2)}&words=${encodeURIComponent(w)}`;
+            const sep = customUrl.includes("?") ? "&" : "?";
+            const remoteViewerUrl = appendParamsToUrl
+                ? `${customUrl}${sep}title=${encodeURIComponent(m1)}&msg2=${encodeURIComponent(m2)}&words=${encodeURIComponent(w)}`
+                : customUrl;
             return {
-                remoteViewerUrl: `https://totrongnhan35co.github.io/QRlove/love.html${qs}`,
+                remoteViewerUrl,
                 localViewerUrl: `love.html${qs}`
             };
         }
@@ -276,7 +292,24 @@
             }
         });
 
-        ["msg1Input", "msg2Input", "wordsInput"].forEach((id) => document.getElementById(id).addEventListener("input", renderHeartQr));
+        ["msg1Input", "msg2Input", "wordsInput", "customTargetUrlInput"].forEach((id) => document.getElementById(id)?.addEventListener("input", renderHeartQr));
+        document.getElementById("urlQuickPills")?.addEventListener("click", (e) => {
+            const b = e.target.closest(".pill-btn");
+            if (!b) return;
+            const qurl = b.dataset.qurl;
+            if (qurl === "auto-params") {
+                appendParamsToUrl = !appendParamsToUrl;
+                b.classList.toggle("active", appendParamsToUrl);
+                renderHeartQr();
+                return;
+            }
+            document.querySelectorAll("#urlQuickPills .pill-btn:not([data-qurl='auto-params'])").forEach((el) => el.classList.remove("active"));
+            b.classList.add("active");
+            if (qurl) {
+                document.getElementById("customTargetUrlInput").value = qurl;
+                renderHeartQr();
+            }
+        });
         document.getElementById("downloadBtn").addEventListener("click", () => {
             const a = document.createElement("a");
             a.download = "qr-trai-tim-tang-nguoi-yeu.png";
