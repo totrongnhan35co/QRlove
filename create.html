@@ -185,21 +185,25 @@
             const m1 = document.getElementById("msg1Input").value.trim();
             const m2 = document.getElementById("msg2Input").value.trim();
             const w = document.getElementById("wordsInput").value.split(/[|\n]+/).map((s) => s.trim()).filter(Boolean).join("|");
-            const qs = `title=${encodeURIComponent(m1)}&msg2=${encodeURIComponent(m2)}&words=${encodeURIComponent(w)}`;
+            const defaultW = PRESETS.anniv.words.split(/[|\n]+/).map((s) => s.trim()).filter(Boolean).join("|");
+            const isDefault = m1 === PRESETS.anniv.m1 && m2 === PRESETS.anniv.m2 && w === defaultW;
+            const qs = isDefault ? "" : `?title=${encodeURIComponent(m1)}&msg2=${encodeURIComponent(m2)}&words=${encodeURIComponent(w)}`;
             return {
-                remoteViewerUrl: `https://totrongnhan35co.github.io/QRlove/?${qs}`,
-                localViewerUrl: `index.html?${qs}`
+                remoteViewerUrl: `https://totrongnhan35co.github.io/QRlove/love.html${qs}`,
+                localViewerUrl: `love.html${qs}`
             };
         }
 
         function renderHeartQr() {
             const canvas = document.getElementById("heartQrCanvas");
+            canvas.style.cursor = "pointer";
+            canvas.title = "Nhấn hoặc quét mã QR để mở ngay trang love.html";
             const ctx = canvas.getContext("2d");
             const { remoteViewerUrl, localViewerUrl } = getViewerUrls();
 
             document.getElementById("urlBox").textContent = remoteViewerUrl;
             document.getElementById("openViewerBtn").href = localViewerUrl;
-            document.getElementById("previewIframe").src = `${localViewerUrl}&instant=1`;
+            document.getElementById("previewIframe").src = localViewerUrl;
 
             ctx.fillStyle = "#f1f5f9";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -243,16 +247,20 @@
             qrImg.crossOrigin = "anonymous";
             qrImg.onload = () => {
                 ctx.fillStyle = "#ffffff";
-                ctx.fillRect(cx - 58, cy - 58, 116, 116);
-                ctx.drawImage(qrImg, cx - 54, cy - 54, 108, 108);
+                ctx.fillRect(cx - 66, cy - 66, 132, 132);
+                ctx.drawImage(qrImg, cx - 58, cy - 58, 116, 116);
             };
-            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&color=dc2626&bgcolor=ffffff&margin=0&data=${encodeURIComponent(remoteViewerUrl)}`;
+            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&ecc=M&color=dc2626&bgcolor=ffffff&margin=1&data=${encodeURIComponent(remoteViewerUrl)}`;
 
             ctx.fillStyle = "#3b82f6";
             ctx.font = "700 13px Quicksand, sans-serif";
             ctx.textAlign = "center";
             ctx.fillText("📷 Quét mã QR", cx, 430);
         }
+
+        document.getElementById("heartQrCanvas").addEventListener("click", () => {
+            window.location.href = getViewerUrls().localViewerUrl;
+        });
 
         document.getElementById("presetPills").addEventListener("click", (e) => {
             const b = e.target.closest(".pill-btn");
