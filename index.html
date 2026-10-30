@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💘 QR Love 3D Studio - Tạo Mã QR Trái Tim & Vũ Trụ Lời Chúc 3D Tặng Người Yêu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700;800&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #060711;
+            --card-bg: rgba(18, 21, 38, 0.82);
+            --card-border: rgba(255, 77, 148, 0.28);
+            --accent-pink: #ff2a85;
+            --accent-cyan: #00e5ff;
+            --text-main: #f8fafc;
+            --text-sub: #cbd5e1;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 20% 15%, #2a0a2e 0%, #070914 55%, #020308 100%);
+            color: var(--text-main);
+            font-family: 'Quicksand', 'Inter', system-ui, sans-serif;
+            padding-bottom: 48px;
+        }
+
+        /* Top Navigation Bar */
+        .top-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(8, 10, 22, 0.9);
+            border-bottom: 1px solid var(--card-border);
+            backdrop-filter: blur(18px);
+            padding: 12px 24px;
+        }
+        .nav-container {
+            max-width: 1380px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+        .badge-hot {
+            background: linear-gradient(135deg, #ff1744, #ff2a85);
+            color: #fff;
+            font-size: 0.72rem;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-weight: 800;
+            box-shadow: 0 0 15px rgba(255, 42, 133, 0.5);
+        }
+        .nav-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .btn-nav {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-nav.primary {
+            background: linear-gradient(135deg, #ff1744, #ff2a85);
+            border-color: transparent;
+            box-shadow: 0 4px 18px rgba(255, 42, 133, 0.45);
+        }
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.12);
+        }
+
+        /* Main Layout */
+        .main-wrapper {
+            max-width: 1380px;
+            margin: 24px auto 0;
+            padding: 0 20px;
+        }
+        .two-col-studio {
+            display: grid;
+            grid-template-columns: 1.08fr 0.92fr;
+            gap: 22px;
+        }
+        @media (max-width: 1024px) {
+            .two-col-studio {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .studio-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 22px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+        }
+        .card-header {
+            margin-bottom: 16px;
+        }
+        .card-header h2 {
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-header p {
+            font-size: 0.86rem;
+            color: var(--text-sub);
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: #f9a8d4;
+            margin-bottom: 7px;
+        }
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        @media (max-width: 640px) {
+            .input-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .studio-input {
+            width: 100%;
+            background: rgba(8, 11, 22, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: #fff;
+            padding: 11px 14px;
+            border-radius: 14px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .studio-input:focus {
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 12px rgba(255, 42, 133, 0.3);
+        }
+
+        /* Multi-row Pill Buttons (No horizontal scrollbar) */
+        .pills-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .pill-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: #e2e8f0;
+            padding: 8px 13px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .pill-btn:hover, .pill-btn.active {
+            background: linear-gradient(135deg, #ff1744, #ff2a85);
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(255, 42, 133, 0.45);
+        }
+
+        /* QR & Preview Area */
+        .qr-showcase-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 14px;
+            padding: 16px;
+            border-radius: 20px;
+            background: rgba(6, 9, 20, 0.65);
+            border: 1px dashed rgba(255, 77, 148, 0.35);
+        }
+        #heartQrCanvas {
+            width: 280px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+            background: #ffffff;
+        }
+        .qr-actions-col {
+            flex: 1;
+            min-width: 220px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .btn-action {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            font-weight: 800;
+            font-size: 0.88rem;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-action.glow {
+            background: linear-gradient(135deg, #e11d48, #ff2a85);
+            border: none;
+            box-shadow: 0 6px 20px rgba(255, 42, 133, 0.45);
+        }
+        .btn-action:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.12);
+        }
+
+        .url-box {
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            padding: 10px 12px;
+            border-radius: 12px;
+            font-size: 0.76rem;
+            color: #7dd3fc;
+            word-break: break-all;
+        }
+
+        .toast-msg {
+            position: fixed;
+            top: 72px;
+            right: 24px;
+            z-index: 200;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 14px;
+            font-weight: 800;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="toastBanner" class="toast-msg"></div>
+
+    <!-- Top Sticky Navigation Bar -->
+    <nav class="top-navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <span>💘</span>
+                <span>QR Love 3D Studio</span>
+                <span class="badge-hot">CHUẨN VIDEO TIKTOK</span>
+            </a>
+
+            <div class="nav-actions">
+                <a id="topOpenLoveBtn" href="love.html" target="_blank" class="btn-nav primary">🌌 Mở Đường Dẫn Quà Tặng 3D Riêng (love.html) ↗</a>
+                <button id="topDownloadQrBtn" class="btn-nav">💾 Tải Ảnh QR Trái Tim</button>
+                <button id="topCopyLinkBtn" class="btn-nav">📋 Copy Link Quà Tặng</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-wrapper">
+        <div class="two-col-studio">
+            <!-- Left Column: Customizer & Heart QR Generator -->
+            <div class="studio-card">
+                <div class="card-header">
+                    <h2>💖 1. Thiết Kế Mã QR Trái Tim Đỏ & Lời Chúc 3D</h2>
+                    <p>Tùy chỉnh tên hai người, số ngày yêu và câu chúc — Mã QR Trái Tim sẽ tự động cập nhật ngay lập tức!</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Chọn Mẫu Chủ Đề Nhanh (Hiển thị đầy đủ không cần cuộn):</label>
+                    <div class="pills-wrap" id="presetPills">
+                        <button class="pill-btn active" data-preset="anniv">💑 Kỷ Niệm 1000 Ngày Yêu (Giống Video)</button>
+                        <button class="pill-btn" data-preset="birthday">🎂 Chúc Mừng Sinh Nhật Người Yêu</button>
+                        <button class="pill-btn" data-preset="confess">💌 Tỏ Tình Crush Lãng Mạn</button>
+                        <button class="pill-btn" data-preset="valentine">🌹 Quà Valentine / 8-3 / 20-10</button>
+                        <button class="pill-btn" data-preset="sorry">🥺 Xin Lỗi & Dỗ Ngọt Công Chúa</button>
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="form-group">
+                        <label>Tin Nhắn Mở Đầu 1 (Trên Thiệp Chat)</label>
+                        <input type="text" id="msg1Input" value="Mừng kỉ niệm 1000 ngày 💘" class="studio-input">
+                    </div>
+                    <div class="form-group">
+                        <label>Tin Nhắn Mở Đầu 2</label>
+                        <input type="text" id="msg2Input" value="Em có quà tặng anh nè 🎁" class="studio-input">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Chọn Tông Màu Chữ Phát Sáng Neon Trong Vũ Trụ 3D:</label>
+                    <div class="pills-wrap" id="themeColorPills">
+                        <button class="pill-btn active" data-theme="both">🌌 Xanh Cyan + Hồng Neon (Giống Hệt Video)</button>
+                        <button class="pill-btn" data-theme="pink">💗 Full Hồng Ngọt Ngào</button>
+                        <button class="pill-btn" data-theme="cyan">💙 Full Xanh Băng Giá</button>
+                        <button class="pill-btn" data-theme="gold">✨ Vàng Kim Lấp Lánh</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Các Câu Chúc & Tên Hai Người Bay Trong Không Gian 3D (Phân cách bằng dấu `|`):</label>
+                    <textarea id="wordsInput" rows="3" class="studio-input">Em yêu anh | Quỳnh Anh | Đức Huy | 1000 Days | Happy Anniversary | Chúc anh luôn vui vẻ | thành công | vững vàng</textarea>
+                </div>
+
+                <!-- Heart QR Canvas & Action Buttons -->
+                <div class="qr-showcase-grid">
+                    <canvas id="heartQrCanvas" width="380" height="465"></canvas>
+
+                    <div class="qr-actions-col">
+                        <div class="url-box">
+                            <strong style="color:#fff; display:block; margin-bottom:4px;">🔗 Đường dẫn riêng khi quét QR:</strong>
+                            <span id="generatedUrlText">love.html</span>
+                        </div>
+                        <a id="openStandaloneLink" href="love.html" target="_blank" class="btn-action glow">🚀 Mở Đường Dẫn Riêng Toàn Màn Hình</a>
+                        <button id="downloadQrCardBtn" class="btn-action">💾 Tải Ảnh Thiệp QR Trái Tim (PNG)</button>
+                        <button id="copyShareUrlBtn" class="btn-action">📋 Copy Link Gửi Qua Zalo / Messenger</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Live Interactive 3D Universe Preview -->
+            <div class="studio-card">
+                <div class="card-header">
+                    <h2>🌌 2. Xem Trước Vũ Trụ Chữ 3D Khi Quét Mã QR</h2>
+                    <p>Dùng chuột kéo hoặc vuốt tay ngay trong khung dưới đây để xoay 360° đám mây lời chúc và trái tim 3D!</p>
+                </div>
+
+                <div style="border-radius:20px; overflow:hidden; border:2px solid #ff2a85; box-shadow:0 0 35px rgba(255, 42, 133, 0.35); height:595px; background:#010206;">
+                    <iframe id="live3DIframe" src="love.html?instant=1" style="width:100%; height:100%; border:none;"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const PRESETS = {
+            anniv: {
+                m1: "Mừng kỉ niệm 1000 ngày 💘",
+                m2: "Em có quà tặng anh nè 🎁",
+                words: "Em yêu anh | Quỳnh Anh | Đức Huy | 1000 Days | Happy Anniversary | Chúc anh luôn vui vẻ | thành công | vững vàng"
+            },
+            birthday: {
+                m1: "Chúc mừng sinh nhật tình yêu của em 🎂💖",
+                m2: "Em làm món quà bí mật này tặng anh nè 🎁",
+                words: "Happy Birthday | Tuổi mới rực rỡ | Yêu anh thương anh | Luôn vui vẻ hạnh phúc | Mãi bên nhau nhé | Thành công vững vàng"
+            },
+            confess: {
+                m1: "Tớ có điều bí mật muốn nói với cậu 💌",
+                m2: "Cậu quét mã QR trái tim này đi nhaaaa 🥰",
+                words: "Làm người yêu tớ nhé | Tớ thích cậu nhiều lắm | I Love You 3000 | Nụ cười cậu là nắng | Đồng ý nha công chúa"
+            },
+            valentine: {
+                m1: "Happy Valentine's Day tình yêu của anh 🌹",
+                m2: "Món quà nhỏ chứa cả bầu trời thương nhớ 💝",
+                words: "Happy Valentine | Yêu em nhất trên đời | Công chúa của anh | Luôn xinh đẹp rạng rỡ | Mãi nắm tay nhau nhé"
+            },
+            sorry: {
+                m1: "Đừng giận anh nữa nha công chúa ơi 🥺💗",
+                m2: "Em quét mã này xem lời xin lỗi của anh nè 🎁",
+                words: "Anh xin lỗi bé yêu | Đừng giận anh nữa nha | Thương công chúa nhất | Tối anh dẫn đi ăn ngon | Mãi yêu em"
+            }
+        };
+
+        let selectedTheme = "both";
+
+        function showToast(msg) {
+            const t = document.getElementById("toastBanner");
+            t.textContent = msg;
+            t.style.display = "block";
+            setTimeout(() => (t.style.display = "none"), 2600);
+        }
+
+        function buildTargetUrls() {
+            const title = (document.getElementById("msg1Input").value || "Mừng kỉ niệm 1000 ngày 💘").trim();
+            const msg2 = (document.getElementById("msg2Input").value || "Em có quà tặng anh nè 🎁").trim();
+            const words = (document.getElementById("wordsInput").value || "Em yêu anh | Happy Anniversary")
+                .split(/[|\n]+/)
+                .map((s) => s.trim())
+                .filter(Boolean)
+                .join("|");
+
+            // Use deployed GitHub Pages URL when opened locally via file:// so phone camera scanning works!
+            const baseRemote = window.location.href.startsWith("http")
+                ? new URL("love.html", window.location.href).href
+                : "https://totrongnhan35co.github.io/QRlove/love.html";
+
+            const qs = `title=${encodeURIComponent(title)}&msg2=${encodeURIComponent(msg2)}&words=${encodeURIComponent(words)}&theme=${encodeURIComponent(selectedTheme)}`;
+            return {
+                remoteUrl: `${baseRemote}?${qs}`,
+                localUrl: `love.html?${qs}`
+            };
+        }
+
+        function renderHeartQrStudio() {
+            const canvas = document.getElementById("heartQrCanvas");
+            const ctx = canvas.getContext("2d");
+            const { remoteUrl, localUrl } = buildTargetUrls();
+
+            document.getElementById("generatedUrlText").textContent = remoteUrl;
+            document.getElementById("openStandaloneLink").href = localUrl;
+            document.getElementById("topOpenLoveBtn").href = localUrl;
+            document.getElementById("live3DIframe").src = `${localUrl}&instant=1`;
+
+            // 1. Background chat screen (matches TikTok video)
+            ctx.fillStyle = "#f1f5f9";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 2. Three Chat Bubbles at Top
+            const bubbles = [
+                document.getElementById("msg1Input").value || "Mừng kỉ niệm 1000 ngày 💘",
+                document.getElementById("msg2Input").value || "Em có quà tặng anh nè 🎁",
+                "Anh quét để nhận quà nhaaaa 🥰"
+            ];
+
+            bubbles.forEach((txt, i) => {
+                const y = 16 + i * 38;
+                ctx.fillStyle = "#ffffff";
+                ctx.strokeStyle = "#e2e8f0";
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.roundRect(22, y, 315, 31, 15);
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.fillStyle = "#0f172a";
+                ctx.font = "700 13px Quicksand, sans-serif";
+                ctx.textAlign = "left";
+                ctx.fillText(txt.slice(0, 36), 34, y + 20);
+            });
+
+            // 3. White QR Card Container
+            ctx.fillStyle = "#ffffff";
+            ctx.beginPath();
+            ctx.roundRect(24, 138, 332, 310, 22);
+            ctx.fill();
+
+            // 4. Draw Red Heart-Shaped QR Pixel Matrix (matches video's heart QR)
+            const cx = 190;
+            const cy = 282;
+            const cell = 6;
+
+            for (let gx = -21; gx <= 21; gx++) {
+                for (let gy = -20; gy <= 20; gy++) {
+                    const nx = gx / 15.5;
+                    const ny = -gy / 15.5 + 0.18;
+                    const eq = Math.pow(nx * nx + ny * ny - 1, 3) - nx * nx * Math.pow(ny, 3);
+                    if (eq <= 0) {
+                        const rnd = Math.abs(Math.sin(gx * 12.9898 + gy * 78.233) * 43758.5453) % 1;
+                        if (rnd > 0.34) {
+                            ctx.fillStyle = "#dc2626";
+                            ctx.fillRect(cx + gx * cell - cell / 2, cy + gy * cell - cell / 2, cell - 1, cell - 1);
+                        }
+                    }
+                }
+            }
+
+            // 5. Draw Scannable Red QR Code in the Heart Center
+            const qrImg = new Image();
+            qrImg.crossOrigin = "anonymous";
+            qrImg.onload = () => {
+                ctx.fillStyle = "#ffffff";
+                ctx.fillRect(cx - 58, cy - 58, 116, 116);
+                ctx.drawImage(qrImg, cx - 54, cy - 54, 108, 108);
+            };
+            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&color=dc2626&bgcolor=ffffff&margin=0&data=${encodeURIComponent(remoteUrl)}`;
+
+            // 6. "Quét mã QR" Footer Label
+            ctx.fillStyle = "#3b82f6";
+            ctx.font = "700 13px Quicksand, sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText("📷 Quét mã QR", cx, 430);
+        }
+
+        document.getElementById("presetPills").addEventListener("click", (e) => {
+            const btn = e.target.closest(".pill-btn");
+            if (!btn) return;
+            document.querySelectorAll("#presetPills .pill-btn").forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            const p = PRESETS[btn.dataset.preset];
+            if (p) {
+                document.getElementById("msg1Input").value = p.m1;
+                document.getElementById("msg2Input").value = p.m2;
+                document.getElementById("wordsInput").value = p.words;
+                renderHeartQrStudio();
+            }
+        });
+
+        document.getElementById("themeColorPills").addEventListener("click", (e) => {
+            const btn = e.target.closest(".pill-btn");
+            if (!btn) return;
+            document.querySelectorAll("#themeColorPills .pill-btn").forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            selectedTheme = btn.dataset.theme;
+            renderHeartQrStudio();
+        });
+
+        ["msg1Input", "msg2Input", "wordsInput"].forEach((id) => {
+            document.getElementById(id).addEventListener("input", renderHeartQrStudio);
+        });
+
+        function downloadHeartQrImage() {
+            const canvas = document.getElementById("heartQrCanvas");
+            const a = document.createElement("a");
+            a.download = "thiep-qr-trai-tim-3d.png";
+            a.href = canvas.toDataURL("image/png");
+            a.click();
+            showToast("💾 Đã tải ảnh Thiệp QR Trái Tim Đỏ về máy!");
+        }
+        document.getElementById("downloadQrCardBtn").addEventListener("click", downloadHeartQrImage);
+        document.getElementById("topDownloadQrBtn").addEventListener("click", downloadHeartQrImage);
+
+        function copyGiftUrl() {
+            const { remoteUrl } = buildTargetUrls();
+            navigator.clipboard.writeText(remoteUrl);
+            showToast("📋 Đã copy đường dẫn món quà 3D!");
+        }
+        document.getElementById("copyShareUrlBtn").addEventListener("click", copyGiftUrl);
+        document.getElementById("topCopyLinkBtn").addEventListener("click", copyGiftUrl);
+
+        renderHeartQrStudio();
+    </script>
+</body>
+</html>
