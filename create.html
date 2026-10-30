@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💘 [Admin/Dev] Tạo Mã QR Trái Tim Đỏ - QR Love 3D</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700;800&family=Inter:wght@500;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 20% 15%, #2a0a2e 0%, #070914 60%, #020308 100%);
+            color: #f8fafc;
+            font-family: 'Quicksand', 'Inter', system-ui, sans-serif;
+            padding: 24px 18px;
+        }
+        .studio-wrap {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 22px;
+        }
+        @media (max-width: 1024px) { .studio-wrap { grid-template-columns: 1fr; } }
+        .card {
+            background: rgba(18, 21, 38, 0.86);
+            border: 1px solid rgba(255, 77, 148, 0.3);
+            border-radius: 24px;
+            padding: 22px;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.45);
+        }
+        h2 { font-size: 1.25rem; margin-bottom: 6px; color: #fff; }
+        p.sub { font-size: 0.85rem; color: #cbd5e1; margin-bottom: 16px; }
+        .form-group { margin-bottom: 14px; }
+        label { display: block; font-size: 0.84rem; font-weight: 700; color: #f9a8d4; margin-bottom: 6px; }
+        .studio-input {
+            width: 100%;
+            background: rgba(8, 11, 22, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-family: inherit;
+        }
+        .pills-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+        .pill-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: #e2e8f0;
+            padding: 8px 13px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .pill-btn.active, .pill-btn:hover {
+            background: linear-gradient(135deg, #ff1744, #ff2a85);
+            color: #fff;
+            border-color: transparent;
+        }
+        .qr-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 14px;
+            padding: 16px;
+            background: rgba(6, 9, 20, 0.65);
+            border-radius: 18px;
+            border: 1px dashed rgba(255, 77, 148, 0.35);
+        }
+        #heartQrCanvas {
+            width: 270px;
+            height: auto;
+            border-radius: 18px;
+            background: #fff;
+        }
+        .btn-col { flex: 1; min-width: 210px; display: flex; flex-direction: column; gap: 10px; }
+        .btn {
+            padding: 12px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            font-weight: 800;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            font-size: 0.88rem;
+        }
+        .btn.primary {
+            background: linear-gradient(135deg, #e11d48, #ff2a85);
+            border: none;
+        }
+        .url-preview {
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            color: #7dd3fc;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="studio-wrap">
+        <div class="card">
+            <h2>🛠️ Trang Dành Riêng Cho Bạn (Tạo Mã QR Trái Tim Đỏ)</h2>
+            <p class="sub">Khi người nhận quét mã QR bên dưới, họ sẽ chỉ thấy màn hình Vũ Trụ Tình Yêu 3D (`index.html`), hoàn toàn KHÔNG thấy trang chỉnh sửa này!</p>
+
+            <div class="form-group">
+                <label>Chọn Mẫu Nhanh:</label>
+                <div class="pills-wrap" id="presetPills">
+                    <button class="pill-btn active" data-preset="anniv">💑 Kỷ Niệm 1000 Ngày (Giống Video)</button>
+                    <button class="pill-btn" data-preset="birthday">🎂 Chúc Mừng Sinh Nhật</button>
+                    <button class="pill-btn" data-preset="confess">💌 Tỏ Tình Crush</button>
+                    <button class="pill-btn" data-preset="sorry">🥺 Xin Lỗi Công Chúa</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Tin Nhắn Hộp Quà 1:</label>
+                <input type="text" id="msg1Input" value="Mừng kỉ niệm 1000 ngày 💘" class="studio-input">
+            </div>
+
+            <div class="form-group">
+                <label>Tin Nhắn Hộp Quà 2:</label>
+                <input type="text" id="msg2Input" value="Em có quà tặng anh nè 🎁" class="studio-input">
+            </div>
+
+            <div class="form-group">
+                <label>Các Chữ Bay Lơ Lửng Trong Không Gian 3D (Phân cách bằng dấu `|`):</label>
+                <textarea id="wordsInput" rows="3" class="studio-input">Em yêu anh | Quỳnh Anh | Đức Huy | 1000 Days | Happy Anniversary | Chúc anh luôn vui vẻ | thành công | vững vàng</textarea>
+            </div>
+
+            <div class="qr-row">
+                <canvas id="heartQrCanvas" width="380" height="465"></canvas>
+                <div class="btn-col">
+                    <div class="url-preview" id="urlBox">https://totrongnhan35co.github.io/QRlove/</div>
+                    <button id="downloadBtn" class="btn primary">💾 Tải Ảnh QR Trái Tim Đỏ Gửi Người Yêu</button>
+                    <a id="openViewerBtn" href="index.html" target="_blank" class="btn">👁️ Xem Thử Giao Diện Người Nhận (`index.html`)</a>
+                    <button id="copyUrlBtn" class="btn">📋 Copy Link Quà Tặng</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🌌 Xem Trước Giao Diện Người Nhận Quà (Chỉ Xem)</h2>
+            <p class="sub">Đây là giao diện 100% toàn màn hình mà người ấy sẽ nhìn thấy khi quét mã QR:</p>
+            <div style="height:560px; border-radius:18px; overflow:hidden; border:2px solid #ff2a85;">
+                <iframe id="previewIframe" src="index.html?instant=1" style="width:100%; height:100%; border:none;"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const PRESETS = {
+            anniv: { m1: "Mừng kỉ niệm 1000 ngày 💘", m2: "Em có quà tặng anh nè 🎁", words: "Em yêu anh | Quỳnh Anh | Đức Huy | 1000 Days | Happy Anniversary | Chúc anh luôn vui vẻ | thành công | vững vàng" },
+            birthday: { m1: "Chúc mừng sinh nhật tình yêu 🎂💖", m2: "Em có món quà bí mật tặng anh nè 🎁", words: "Happy Birthday | Tuổi mới rực rỡ | Yêu anh nhất | Luôn vui vẻ hạnh phúc | Mãi bên nhau nhé" },
+            confess: { m1: "Tớ có điều bí mật muốn nói 💌", m2: "Cậu quét mã QR trái tim này đi nhaaaa 🥰", words: "Làm người yêu tớ nhé | Tớ thích cậu nhiều lắm | I Love You 3000 | Đồng ý nha công chúa" },
+            sorry: { m1: "Đừng giận anh nữa nha công chúa 🥺💗", m2: "Quét mã này xem lời xin lỗi của anh nè 🎁", words: "Anh xin lỗi bé yêu | Đừng giận anh nữa nha | Thương công chúa nhất | Mãi yêu em" }
+        };
+
+        function getViewerUrls() {
+            const m1 = document.getElementById("msg1Input").value.trim();
+            const m2 = document.getElementById("msg2Input").value.trim();
+            const w = document.getElementById("wordsInput").value.split(/[|\n]+/).map((s) => s.trim()).filter(Boolean).join("|");
+            const qs = `title=${encodeURIComponent(m1)}&msg2=${encodeURIComponent(m2)}&words=${encodeURIComponent(w)}`;
+            return {
+                remoteViewerUrl: `https://totrongnhan35co.github.io/QRlove/?${qs}`,
+                localViewerUrl: `index.html?${qs}`
+            };
+        }
+
+        function renderHeartQr() {
+            const canvas = document.getElementById("heartQrCanvas");
+            const ctx = canvas.getContext("2d");
+            const { remoteViewerUrl, localViewerUrl } = getViewerUrls();
+
+            document.getElementById("urlBox").textContent = remoteViewerUrl;
+            document.getElementById("openViewerBtn").href = localViewerUrl;
+            document.getElementById("previewIframe").src = `${localViewerUrl}&instant=1`;
+
+            ctx.fillStyle = "#f1f5f9";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            const bubbles = [
+                document.getElementById("msg1Input").value,
+                document.getElementById("msg2Input").value,
+                "Anh quét để nhận quà nhaaaa 🥰"
+            ];
+            bubbles.forEach((t, i) => {
+                const y = 16 + i * 38;
+                ctx.fillStyle = "#fff";
+                ctx.beginPath();
+                ctx.roundRect(22, y, 315, 31, 15);
+                ctx.fill();
+                ctx.fillStyle = "#0f172a";
+                ctx.font = "700 13px Quicksand, sans-serif";
+                ctx.fillText(t.slice(0, 36), 34, y + 20);
+            });
+
+            ctx.fillStyle = "#fff";
+            ctx.beginPath();
+            ctx.roundRect(24, 138, 332, 310, 22);
+            ctx.fill();
+
+            const cx = 190, cy = 282, cell = 6;
+            for (let gx = -21; gx <= 21; gx++) {
+                for (let gy = -20; gy <= 20; gy++) {
+                    const nx = gx / 15.5, ny = -gy / 15.5 + 0.18;
+                    if (Math.pow(nx * nx + ny * ny - 1, 3) - nx * nx * Math.pow(ny, 3) <= 0) {
+                        const rnd = Math.abs(Math.sin(gx * 12.9898 + gy * 78.233) * 43758.5453) % 1;
+                        if (rnd > 0.34) {
+                            ctx.fillStyle = "#dc2626";
+                            ctx.fillRect(cx + gx * cell - cell / 2, cy + gy * cell - cell / 2, cell - 1, cell - 1);
+                        }
+                    }
+                }
+            }
+
+            const qrImg = new Image();
+            qrImg.crossOrigin = "anonymous";
+            qrImg.onload = () => {
+                ctx.fillStyle = "#ffffff";
+                ctx.fillRect(cx - 58, cy - 58, 116, 116);
+                ctx.drawImage(qrImg, cx - 54, cy - 54, 108, 108);
+            };
+            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&color=dc2626&bgcolor=ffffff&margin=0&data=${encodeURIComponent(remoteViewerUrl)}`;
+
+            ctx.fillStyle = "#3b82f6";
+            ctx.font = "700 13px Quicksand, sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText("📷 Quét mã QR", cx, 430);
+        }
+
+        document.getElementById("presetPills").addEventListener("click", (e) => {
+            const b = e.target.closest(".pill-btn");
+            if (!b) return;
+            document.querySelectorAll("#presetPills .pill-btn").forEach((el) => el.classList.remove("active"));
+            b.classList.add("active");
+            const p = PRESETS[b.dataset.preset];
+            if (p) {
+                document.getElementById("msg1Input").value = p.m1;
+                document.getElementById("msg2Input").value = p.m2;
+                document.getElementById("wordsInput").value = p.words;
+                renderHeartQr();
+            }
+        });
+
+        ["msg1Input", "msg2Input", "wordsInput"].forEach((id) => document.getElementById(id).addEventListener("input", renderHeartQr));
+        document.getElementById("downloadBtn").addEventListener("click", () => {
+            const a = document.createElement("a");
+            a.download = "qr-trai-tim-tang-nguoi-yeu.png";
+            a.href = document.getElementById("heartQrCanvas").toDataURL("image/png");
+            a.click();
+        });
+        document.getElementById("copyUrlBtn").addEventListener("click", () => {
+            navigator.clipboard.writeText(getViewerUrls().remoteViewerUrl);
+        });
+        renderHeartQr();
+    </script>
+</body>
+</html>

@@ -2,558 +2,493 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💘 QR Love 3D Studio - Tạo Mã QR Trái Tim & Vũ Trụ Lời Chúc 3D Tặng Người Yêu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>💘 Món Quà Bí Mật Dành Tặng Người Thương</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700;800&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700;800&family=Inter:wght@600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-dark: #060711;
-            --card-bg: rgba(18, 21, 38, 0.82);
-            --card-border: rgba(255, 77, 148, 0.28);
-            --accent-pink: #ff2a85;
-            --accent-cyan: #00e5ff;
-            --text-main: #f8fafc;
-            --text-sub: #cbd5e1;
-        }
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            user-select: none;
+            -webkit-user-select: none;
         }
-        body {
-            min-height: 100vh;
-            background: radial-gradient(circle at 20% 15%, #2a0a2e 0%, #070914 55%, #020308 100%);
-            color: var(--text-main);
-            font-family: 'Quicksand', 'Inter', system-ui, sans-serif;
-            padding-bottom: 48px;
-        }
-
-        /* Top Navigation Bar */
-        .top-navbar {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: rgba(8, 10, 22, 0.9);
-            border-bottom: 1px solid var(--card-border);
-            backdrop-filter: blur(18px);
-            padding: 12px 24px;
-        }
-        .nav-container {
-            max-width: 1380px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-        }
-        .brand-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: #fff;
-            font-size: 1.25rem;
-            font-weight: 800;
-        }
-        .badge-hot {
-            background: linear-gradient(135deg, #ff1744, #ff2a85);
-            color: #fff;
-            font-size: 0.72rem;
-            padding: 3px 10px;
-            border-radius: 999px;
-            font-weight: 800;
-            box-shadow: 0 0 15px rgba(255, 42, 133, 0.5);
-        }
-        .nav-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .btn-nav {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            color: #fff;
-            padding: 8px 16px;
-            border-radius: 999px;
-            font-size: 0.84rem;
-            font-weight: 700;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-        .btn-nav.primary {
-            background: linear-gradient(135deg, #ff1744, #ff2a85);
-            border-color: transparent;
-            box-shadow: 0 4px 18px rgba(255, 42, 133, 0.45);
-        }
-        .btn-nav:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.12);
-        }
-
-        /* Main Layout */
-        .main-wrapper {
-            max-width: 1380px;
-            margin: 24px auto 0;
-            padding: 0 20px;
-        }
-        .two-col-studio {
-            display: grid;
-            grid-template-columns: 1.08fr 0.92fr;
-            gap: 22px;
-        }
-        @media (max-width: 1024px) {
-            .two-col-studio {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .studio-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            padding: 22px;
-            backdrop-filter: blur(16px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
-        }
-        .card-header {
-            margin-bottom: 16px;
-        }
-        .card-header h2 {
-            font-size: 1.25rem;
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .card-header p {
-            font-size: 0.86rem;
-            color: var(--text-sub);
-        }
-
-        .form-group {
-            margin-bottom: 14px;
-        }
-        .form-group label {
-            display: block;
-            font-size: 0.84rem;
-            font-weight: 700;
-            color: #f9a8d4;
-            margin-bottom: 7px;
-        }
-        .input-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-        @media (max-width: 640px) {
-            .input-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .studio-input {
+        html, body {
             width: 100%;
-            background: rgba(8, 11, 22, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            color: #fff;
-            padding: 11px 14px;
-            border-radius: 14px;
-            font-size: 0.9rem;
-            font-family: inherit;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        .studio-input:focus {
-            border-color: var(--accent-pink);
-            box-shadow: 0 0 12px rgba(255, 42, 133, 0.3);
+            height: 100%;
+            overflow: hidden;
+            background: #010206;
+            font-family: 'Quicksand', 'Inter', system-ui, sans-serif;
+            touch-action: none;
         }
 
-        /* Multi-row Pill Buttons (No horizontal scrollbar) */
-        .pills-wrap {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
+        /* Background Twinkling Starfield Canvas */
+        #starfieldCanvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
         }
-        .pill-btn {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.16);
-            color: #e2e8f0;
-            padding: 8px 13px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
+
+        /* 3D Perspective Stage */
+        #loveScene3D {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            perspective: 820px;
+            overflow: hidden;
+            z-index: 2;
+            cursor: grab;
         }
-        .pill-btn:hover, .pill-btn.active {
-            background: linear-gradient(135deg, #ff1744, #ff2a85);
+        #loveScene3D:active {
+            cursor: grabbing;
+        }
+
+        #cloudContainer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            transform-style: preserve-3d;
+        }
+
+        .love-word-3d {
+            position: absolute;
+            left: 0;
+            top: 0;
+            white-space: nowrap;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            transform-origin: center center;
+            will-change: transform, opacity;
+            pointer-events: none;
+        }
+
+        /* Neon Cyan-Blue Glow (Exact match to TikTok video) */
+        .neon-cyan {
             color: #ffffff;
-            border-color: transparent;
-            box-shadow: 0 0 15px rgba(255, 42, 133, 0.45);
+            text-shadow:
+                0 0 4px #ffffff,
+                0 0 10px #7dd3fc,
+                0 0 22px #00d8ff,
+                0 0 42px #0088ff,
+                0 0 70px #0051ff;
         }
 
-        /* QR & Preview Area */
-        .qr-showcase-grid {
+        /* Neon Pink-Magenta Glow (Exact match to TikTok video) */
+        .neon-pink {
+            color: #fff5f9;
+            text-shadow:
+                0 0 4px #ffffff,
+                0 0 10px #ff80bf,
+                0 0 22px #ff1a8c,
+                0 0 44px #e60073,
+                0 0 75px #b30059;
+        }
+
+        /* Neon Warm Gold Glow */
+        .neon-gold {
+            color: #fffbeb;
+            text-shadow:
+                0 0 4px #ffffff,
+                0 0 12px #fde047,
+                0 0 26px #eab308,
+                0 0 50px #ca8a04;
+        }
+
+        /* 3D Glowing Red Heart SVG Node */
+        .heart-3d-node {
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform-origin: center center;
+            will-change: transform, opacity;
+            pointer-events: none;
             display: flex;
-            flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            gap: 18px;
-            margin-top: 14px;
-            padding: 16px;
-            border-radius: 20px;
-            background: rgba(6, 9, 20, 0.65);
-            border: 1px dashed rgba(255, 77, 148, 0.35);
         }
-        #heartQrCanvas {
-            width: 280px;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
-            background: #ffffff;
-        }
-        .qr-actions-col {
-            flex: 1;
-            min-width: 220px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .btn-action {
-            width: 100%;
-            padding: 12px 16px;
-            border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            background: rgba(255, 255, 255, 0.08);
-            color: #fff;
-            font-weight: 800;
-            font-size: 0.88rem;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-        .btn-action.glow {
-            background: linear-gradient(135deg, #e11d48, #ff2a85);
-            border: none;
-            box-shadow: 0 6px 20px rgba(255, 42, 133, 0.45);
-        }
-        .btn-action:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.12);
+        .heart-svg {
+            fill: #ff1744;
+            filter: drop-shadow(0 0 10px #ff1744) drop-shadow(0 0 24px #d50000);
         }
 
-        .url-box {
-            background: rgba(0, 0, 0, 0.45);
-            border: 1px solid rgba(0, 229, 255, 0.3);
-            padding: 10px 12px;
-            border-radius: 12px;
-            font-size: 0.76rem;
-            color: #7dd3fc;
-            word-break: break-all;
-        }
-
-        .toast-msg {
+        /* Subtle Music Toggle Button in Corner (Viewer Only - No Edit UI) */
+        .music-floating-btn {
             position: fixed;
-            top: 72px;
-            right: 24px;
-            z-index: 200;
-            background: linear-gradient(135deg, #10b981, #059669);
+            bottom: 20px;
+            right: 20px;
+            z-index: 25;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 42, 133, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 0 18px rgba(255, 42, 133, 0.5);
+            transition: transform 0.2s;
+        }
+        .music-floating-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Intro Gift Overlay (Tap to start music & enter 3D galaxy) */
+        #scanIntroOverlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: radial-gradient(circle at center, #1e0b24 0%, #03040a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+        #scanIntroOverlay.hidden-overlay {
+            opacity: 0;
+            transform: scale(1.3);
+            pointer-events: none;
+        }
+        .intro-chat-card {
+            background: #f8fafc;
+            color: #0f172a;
+            width: 100%;
+            max-width: 340px;
+            border-radius: 26px;
+            padding: 24px 20px;
+            box-shadow: 0 20px 60px rgba(255, 23, 68, 0.45);
+            text-align: center;
+        }
+        .msg-bubble {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 10px 14px;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+        }
+        .pulse-heart-box {
+            margin: 18px auto;
+            width: 96px;
+            height: 96px;
+            border-radius: 24px;
+            background: #fff1f2;
+            border: 2px dashed #f43f5e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.4rem;
+            animation: heartBeat 1.1s infinite alternate;
+            cursor: pointer;
+        }
+        @keyframes heartBeat {
+            from { transform: scale(0.94); }
+            to { transform: scale(1.08); }
+        }
+        .open-universe-btn {
+            width: 100%;
+            padding: 13px 18px;
+            border: none;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #e11d48, #ff2a85);
             color: #fff;
-            padding: 12px 20px;
-            border-radius: 14px;
+            font-size: 0.96rem;
             font-weight: 800;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-            display: none;
+            cursor: pointer;
+            box-shadow: 0 8px 22px rgba(225, 29, 72, 0.45);
         }
     </style>
 </head>
 <body>
-    <div id="toastBanner" class="toast-msg"></div>
-
-    <!-- Top Sticky Navigation Bar -->
-    <nav class="top-navbar">
-        <div class="nav-container">
-            <a href="index.html" class="brand-logo">
-                <span>💘</span>
-                <span>QR Love 3D Studio</span>
-                <span class="badge-hot">CHUẨN VIDEO TIKTOK</span>
-            </a>
-
-            <div class="nav-actions">
-                <a id="topOpenLoveBtn" href="love.html" target="_blank" class="btn-nav primary">🌌 Mở Đường Dẫn Quà Tặng 3D Riêng (love.html) ↗</a>
-                <button id="topDownloadQrBtn" class="btn-nav">💾 Tải Ảnh QR Trái Tim</button>
-                <button id="topCopyLinkBtn" class="btn-nav">📋 Copy Link Quà Tặng</button>
-            </div>
-        </div>
-    </nav>
-
-    <div class="main-wrapper">
-        <div class="two-col-studio">
-            <!-- Left Column: Customizer & Heart QR Generator -->
-            <div class="studio-card">
-                <div class="card-header">
-                    <h2>💖 1. Thiết Kế Mã QR Trái Tim Đỏ & Lời Chúc 3D</h2>
-                    <p>Tùy chỉnh tên hai người, số ngày yêu và câu chúc — Mã QR Trái Tim sẽ tự động cập nhật ngay lập tức!</p>
-                </div>
-
-                <div class="form-group">
-                    <label>Chọn Mẫu Chủ Đề Nhanh (Hiển thị đầy đủ không cần cuộn):</label>
-                    <div class="pills-wrap" id="presetPills">
-                        <button class="pill-btn active" data-preset="anniv">💑 Kỷ Niệm 1000 Ngày Yêu (Giống Video)</button>
-                        <button class="pill-btn" data-preset="birthday">🎂 Chúc Mừng Sinh Nhật Người Yêu</button>
-                        <button class="pill-btn" data-preset="confess">💌 Tỏ Tình Crush Lãng Mạn</button>
-                        <button class="pill-btn" data-preset="valentine">🌹 Quà Valentine / 8-3 / 20-10</button>
-                        <button class="pill-btn" data-preset="sorry">🥺 Xin Lỗi & Dỗ Ngọt Công Chúa</button>
-                    </div>
-                </div>
-
-                <div class="input-row">
-                    <div class="form-group">
-                        <label>Tin Nhắn Mở Đầu 1 (Trên Thiệp Chat)</label>
-                        <input type="text" id="msg1Input" value="Mừng kỉ niệm 1000 ngày 💘" class="studio-input">
-                    </div>
-                    <div class="form-group">
-                        <label>Tin Nhắn Mở Đầu 2</label>
-                        <input type="text" id="msg2Input" value="Em có quà tặng anh nè 🎁" class="studio-input">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Chọn Tông Màu Chữ Phát Sáng Neon Trong Vũ Trụ 3D:</label>
-                    <div class="pills-wrap" id="themeColorPills">
-                        <button class="pill-btn active" data-theme="both">🌌 Xanh Cyan + Hồng Neon (Giống Hệt Video)</button>
-                        <button class="pill-btn" data-theme="pink">💗 Full Hồng Ngọt Ngào</button>
-                        <button class="pill-btn" data-theme="cyan">💙 Full Xanh Băng Giá</button>
-                        <button class="pill-btn" data-theme="gold">✨ Vàng Kim Lấp Lánh</button>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Các Câu Chúc & Tên Hai Người Bay Trong Không Gian 3D (Phân cách bằng dấu `|`):</label>
-                    <textarea id="wordsInput" rows="3" class="studio-input">Em yêu anh | Quỳnh Anh | Đức Huy | 1000 Days | Happy Anniversary | Chúc anh luôn vui vẻ | thành công | vững vàng</textarea>
-                </div>
-
-                <!-- Heart QR Canvas & Action Buttons -->
-                <div class="qr-showcase-grid">
-                    <canvas id="heartQrCanvas" width="380" height="465"></canvas>
-
-                    <div class="qr-actions-col">
-                        <div class="url-box">
-                            <strong style="color:#fff; display:block; margin-bottom:4px;">🔗 Đường dẫn riêng khi quét QR:</strong>
-                            <span id="generatedUrlText">love.html</span>
-                        </div>
-                        <a id="openStandaloneLink" href="love.html" target="_blank" class="btn-action glow">🚀 Mở Đường Dẫn Riêng Toàn Màn Hình</a>
-                        <button id="downloadQrCardBtn" class="btn-action">💾 Tải Ảnh Thiệp QR Trái Tim (PNG)</button>
-                        <button id="copyShareUrlBtn" class="btn-action">📋 Copy Link Gửi Qua Zalo / Messenger</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Right Column: Live Interactive 3D Universe Preview -->
-            <div class="studio-card">
-                <div class="card-header">
-                    <h2>🌌 2. Xem Trước Vũ Trụ Chữ 3D Khi Quét Mã QR</h2>
-                    <p>Dùng chuột kéo hoặc vuốt tay ngay trong khung dưới đây để xoay 360° đám mây lời chúc và trái tim 3D!</p>
-                </div>
-
-                <div style="border-radius:20px; overflow:hidden; border:2px solid #ff2a85; box-shadow:0 0 35px rgba(255, 42, 133, 0.35); height:595px; background:#010206;">
-                    <iframe id="live3DIframe" src="love.html?instant=1" style="width:100%; height:100%; border:none;"></iframe>
-                </div>
-            </div>
+    <!-- Gift Box Intro (Only shown until recipient taps to open gift & play music) -->
+    <div id="scanIntroOverlay">
+        <div class="intro-chat-card">
+            <div class="msg-bubble" id="introMsg1">Mừng kỉ niệm 1000 ngày 💘</div>
+            <div class="msg-bubble" id="introMsg2">Em có quà tặng anh nè 🎁</div>
+            <div class="msg-bubble" id="introMsg3">Chạm vào trái tim để mở quà nhaaaa 🥰</div>
+            <div class="pulse-heart-box" id="tapHeartBox">❤️</div>
+            <button class="open-universe-btn" id="openGiftUniverseBtn">✨ Chạm Để Mở Quà ✨</button>
         </div>
     </div>
 
+    <canvas id="starfieldCanvas"></canvas>
+
+    <div id="loveScene3D">
+        <div id="cloudContainer"></div>
+    </div>
+
+    <!-- Single Discrete Music Button in Bottom-Right Corner -->
+    <button class="music-floating-btn" id="hudMusicBtn" title="Bật/Tắt nhạc">🎵</button>
+
     <script>
-        const PRESETS = {
-            anniv: {
-                m1: "Mừng kỉ niệm 1000 ngày 💘",
-                m2: "Em có quà tặng anh nè 🎁",
-                words: "Em yêu anh | Quỳnh Anh | Đức Huy | 1000 Days | Happy Anniversary | Chúc anh luôn vui vẻ | thành công | vững vàng"
-            },
-            birthday: {
-                m1: "Chúc mừng sinh nhật tình yêu của em 🎂💖",
-                m2: "Em làm món quà bí mật này tặng anh nè 🎁",
-                words: "Happy Birthday | Tuổi mới rực rỡ | Yêu anh thương anh | Luôn vui vẻ hạnh phúc | Mãi bên nhau nhé | Thành công vững vàng"
-            },
-            confess: {
-                m1: "Tớ có điều bí mật muốn nói với cậu 💌",
-                m2: "Cậu quét mã QR trái tim này đi nhaaaa 🥰",
-                words: "Làm người yêu tớ nhé | Tớ thích cậu nhiều lắm | I Love You 3000 | Nụ cười cậu là nắng | Đồng ý nha công chúa"
-            },
-            valentine: {
-                m1: "Happy Valentine's Day tình yêu của anh 🌹",
-                m2: "Món quà nhỏ chứa cả bầu trời thương nhớ 💝",
-                words: "Happy Valentine | Yêu em nhất trên đời | Công chúa của anh | Luôn xinh đẹp rạng rỡ | Mãi nắm tay nhau nhé"
-            },
-            sorry: {
-                m1: "Đừng giận anh nữa nha công chúa ơi 🥺💗",
-                m2: "Em quét mã này xem lời xin lỗi của anh nè 🎁",
-                words: "Anh xin lỗi bé yêu | Đừng giận anh nữa nha | Thương công chúa nhất | Tối anh dẫn đi ăn ngon | Mãi yêu em"
+        const params = new URLSearchParams(window.location.search);
+        const titleParam = params.get("title") || "Mừng kỉ niệm 1000 ngày 💘";
+        const msg2Param = params.get("msg2") || "Em có quà tặng anh nè 🎁";
+        const wordsParam = params.get("words");
+        const currentTheme = params.get("theme") || "both";
+        const isInstant = params.get("instant") === "1";
+
+        document.getElementById("introMsg1").textContent = titleParam;
+        document.getElementById("introMsg2").textContent = msg2Param;
+
+        const DEFAULT_WORDS = [
+            "Em yêu anh",
+            "Quỳnh Anh",
+            "Đức Huy",
+            "1000 Days",
+            "Happy Anniversary",
+            "Chúc anh luôn vui vẻ",
+            "thành công",
+            "vững vàng"
+        ];
+
+        const phraseList = wordsParam
+            ? wordsParam.split("|").map((s) => s.trim()).filter(Boolean)
+            : DEFAULT_WORDS;
+
+        // 1. Deep Space Starfield
+        const starCanvas = document.getElementById("starfieldCanvas");
+        const sctx = starCanvas.getContext("2d");
+        let stars = [];
+
+        function initStars() {
+            starCanvas.width = window.innerWidth;
+            starCanvas.height = window.innerHeight;
+            stars = Array.from({ length: 240 }, () => ({
+                x: Math.random() * starCanvas.width,
+                y: Math.random() * starCanvas.height,
+                r: Math.random() * 1.6 + 0.3,
+                phase: Math.random() * Math.PI * 2,
+                speed: 0.015 + Math.random() * 0.03
+            }));
+        }
+        window.addEventListener("resize", initStars);
+        initStars();
+
+        function renderStarfield() {
+            sctx.fillStyle = "#010206";
+            sctx.fillRect(0, 0, starCanvas.width, starCanvas.height);
+            for (const st of stars) {
+                st.phase += st.speed;
+                const alpha = 0.2 + ((Math.sin(st.phase) + 1) * 0.4);
+                sctx.fillStyle = `rgba(255, 255, 255, ${alpha.toFixed(2)})`;
+                sctx.beginPath();
+                sctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+                sctx.fill();
             }
-        };
+            requestAnimationFrame(renderStarfield);
+        }
+        renderStarfield();
 
-        let selectedTheme = "both";
+        // 2. Build Dense 3D Word & Glowing Heart Galaxy
+        const container = document.getElementById("cloudContainer");
+        const items3D = [];
+        const WORD_COUNT = 85;
+        const HEART_COUNT = 34;
 
-        function showToast(msg) {
-            const t = document.getElementById("toastBanner");
-            t.textContent = msg;
-            t.style.display = "block";
-            setTimeout(() => (t.style.display = "none"), 2600);
+        function pickNeonClass(idx) {
+            if (currentTheme === "cyan") return "neon-cyan";
+            if (currentTheme === "pink") return "neon-pink";
+            if (currentTheme === "gold") return "neon-gold";
+            return idx % 3 === 0 ? "neon-pink" : "neon-cyan";
         }
 
-        function buildTargetUrls() {
-            const title = (document.getElementById("msg1Input").value || "Mừng kỉ niệm 1000 ngày 💘").trim();
-            const msg2 = (document.getElementById("msg2Input").value || "Em có quà tặng anh nè 🎁").trim();
-            const words = (document.getElementById("wordsInput").value || "Em yêu anh | Happy Anniversary")
-                .split(/[|\n]+/)
-                .map((s) => s.trim())
-                .filter(Boolean)
-                .join("|");
+        function buildGalaxyNodes() {
+            container.innerHTML = "";
+            items3D.length = 0;
 
-            // Use deployed GitHub Pages URL when opened locally via file:// so phone camera scanning works!
-            const baseRemote = window.location.href.startsWith("http")
-                ? new URL("love.html", window.location.href).href
-                : "https://totrongnhan35co.github.io/QRlove/love.html";
+            const rangeX = Math.min(window.innerWidth * 1.35, 1050);
+            const rangeY = Math.min(window.innerHeight * 1.25, 860);
+            const rangeZ = 920;
 
-            const qs = `title=${encodeURIComponent(title)}&msg2=${encodeURIComponent(msg2)}&words=${encodeURIComponent(words)}&theme=${encodeURIComponent(selectedTheme)}`;
-            return {
-                remoteUrl: `${baseRemote}?${qs}`,
-                localUrl: `love.html?${qs}`
-            };
+            for (let i = 0; i < WORD_COUNT; i++) {
+                const text = phraseList[i % phraseList.length];
+                const el = document.createElement("div");
+                el.className = `love-word-3d ${pickNeonClass(i)}`;
+                el.textContent = text;
+
+                const size = i % 11 === 0 ? 40 : i % 5 === 0 ? 27 : 18;
+                el.style.fontSize = `${size}px`;
+                container.appendChild(el);
+
+                items3D.push({
+                    el,
+                    x: (Math.random() - 0.5) * rangeX,
+                    y: (Math.random() - 0.5) * rangeY,
+                    z: (Math.random() - 0.5) * rangeZ,
+                    vy: -0.14 - Math.random() * 0.22
+                });
+            }
+
+            const heartSvgMarkup = `<svg class="heart-svg" viewBox="0 0 24 24" width="100%" height="100%"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
+
+            for (let i = 0; i < HEART_COUNT; i++) {
+                const el = document.createElement("div");
+                el.className = "heart-3d-node";
+                const sz = i % 6 === 0 ? 54 : 24 + Math.floor(Math.random() * 18);
+                el.style.width = `${sz}px`;
+                el.style.height = `${sz}px`;
+                el.innerHTML = heartSvgMarkup;
+                container.appendChild(el);
+
+                items3D.push({
+                    el,
+                    x: (Math.random() - 0.5) * rangeX,
+                    y: (Math.random() - 0.5) * rangeY,
+                    z: (Math.random() - 0.5) * rangeZ,
+                    vy: -0.22 - Math.random() * 0.3
+                });
+            }
         }
+        buildGalaxyNodes();
 
-        function renderHeartQrStudio() {
-            const canvas = document.getElementById("heartQrCanvas");
-            const ctx = canvas.getContext("2d");
-            const { remoteUrl, localUrl } = buildTargetUrls();
+        // 3. 3D Rotation & Interactive Touch/Mouse Drag
+        let rotX = -0.06;
+        let rotY = 0.18;
+        let targetRotX = -0.06;
+        let targetRotY = 0.18;
+        let zoomZ = 0;
+        let dragging = false;
+        let prevX = 0;
+        let prevY = 0;
 
-            document.getElementById("generatedUrlText").textContent = remoteUrl;
-            document.getElementById("openStandaloneLink").href = localUrl;
-            document.getElementById("topOpenLoveBtn").href = localUrl;
-            document.getElementById("live3DIframe").src = `${localUrl}&instant=1`;
+        const stage = document.getElementById("loveScene3D");
+        stage.addEventListener("pointerdown", (e) => {
+            dragging = true;
+            prevX = e.clientX;
+            prevY = e.clientY;
+        });
+        window.addEventListener("pointermove", (e) => {
+            if (!dragging) return;
+            const dx = e.clientX - prevX;
+            const dy = e.clientY - prevY;
+            prevX = e.clientX;
+            prevY = e.clientY;
+            targetRotY += dx * 0.0048;
+            targetRotX = Math.max(-1.15, Math.min(1.15, targetRotX - dy * 0.0048));
+        });
+        window.addEventListener("pointerup", () => {
+            dragging = false;
+        });
+        window.addEventListener("wheel", (e) => {
+            zoomZ = Math.max(-360, Math.min(360, zoomZ - e.deltaY * 0.4));
+        });
 
-            // 1. Background chat screen (matches TikTok video)
-            ctx.fillStyle = "#f1f5f9";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        function render3DLoop() {
+            if (!dragging) {
+                targetRotY += 0.0024;
+            }
+            rotX += (targetRotX - rotX) * 0.08;
+            rotY += (targetRotY - rotY) * 0.08;
 
-            // 2. Three Chat Bubbles at Top
-            const bubbles = [
-                document.getElementById("msg1Input").value || "Mừng kỉ niệm 1000 ngày 💘",
-                document.getElementById("msg2Input").value || "Em có quà tặng anh nè 🎁",
-                "Anh quét để nhận quà nhaaaa 🥰"
-            ];
+            const cosY = Math.cos(rotY);
+            const sinY = Math.sin(rotY);
+            const cosX = Math.cos(rotX);
+            const sinX = Math.sin(rotX);
+            const fov = 640;
 
-            bubbles.forEach((txt, i) => {
-                const y = 16 + i * 38;
-                ctx.fillStyle = "#ffffff";
-                ctx.strokeStyle = "#e2e8f0";
-                ctx.lineWidth = 1.5;
-                ctx.beginPath();
-                ctx.roundRect(22, y, 315, 31, 15);
-                ctx.fill();
-                ctx.stroke();
+            for (const item of items3D) {
+                item.y += item.vy;
+                if (item.y < -460) item.y = 460;
 
-                ctx.fillStyle = "#0f172a";
-                ctx.font = "700 13px Quicksand, sans-serif";
-                ctx.textAlign = "left";
-                ctx.fillText(txt.slice(0, 36), 34, y + 20);
-            });
+                const x1 = item.x * cosY - item.z * sinY;
+                const z1 = item.z * cosY + item.x * sinY;
+                const y2 = item.y * cosX - z1 * sinX;
+                const z2 = z1 * cosX + item.y * sinX + zoomZ;
 
-            // 3. White QR Card Container
-            ctx.fillStyle = "#ffffff";
-            ctx.beginPath();
-            ctx.roundRect(24, 138, 332, 310, 22);
-            ctx.fill();
-
-            // 4. Draw Red Heart-Shaped QR Pixel Matrix (matches video's heart QR)
-            const cx = 190;
-            const cy = 282;
-            const cell = 6;
-
-            for (let gx = -21; gx <= 21; gx++) {
-                for (let gy = -20; gy <= 20; gy++) {
-                    const nx = gx / 15.5;
-                    const ny = -gy / 15.5 + 0.18;
-                    const eq = Math.pow(nx * nx + ny * ny - 1, 3) - nx * nx * Math.pow(ny, 3);
-                    if (eq <= 0) {
-                        const rnd = Math.abs(Math.sin(gx * 12.9898 + gy * 78.233) * 43758.5453) % 1;
-                        if (rnd > 0.34) {
-                            ctx.fillStyle = "#dc2626";
-                            ctx.fillRect(cx + gx * cell - cell / 2, cy + gy * cell - cell / 2, cell - 1, cell - 1);
-                        }
-                    }
+                const depth = fov + z2;
+                if (depth > 55) {
+                    const scale = fov / depth;
+                    const opacity = Math.max(0.1, Math.min(1, (z2 + 520) / 760));
+                    item.el.style.transform = `translate3d(${x1.toFixed(1)}px, ${y2.toFixed(1)}px, ${z2.toFixed(1)}px) translate(-50%, -50%) scale(${scale.toFixed(2)})`;
+                    item.el.style.opacity = opacity.toFixed(2);
+                } else {
+                    item.el.style.opacity = "0";
                 }
             }
+            requestAnimationFrame(render3DLoop);
+        }
+        render3DLoop();
 
-            // 5. Draw Scannable Red QR Code in the Heart Center
-            const qrImg = new Image();
-            qrImg.crossOrigin = "anonymous";
-            qrImg.onload = () => {
-                ctx.fillStyle = "#ffffff";
-                ctx.fillRect(cx - 58, cy - 58, 116, 116);
-                ctx.drawImage(qrImg, cx - 54, cy - 54, 108, 108);
-            };
-            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&color=dc2626&bgcolor=ffffff&margin=0&data=${encodeURIComponent(remoteUrl)}`;
+        // 4. Romantic Piano Melody Synthesizer
+        let audioCtx = null;
+        let isMusicOn = false;
+        let melodyTimer = null;
+        const MELODY = [
+            261.63, 329.63, 392.00, 523.25,
+            493.88, 392.00, 329.63, 349.23,
+            440.00, 523.25, 659.25, 587.33,
+            523.25, 392.00, 329.63, 261.63
+        ];
+        let mIdx = 0;
 
-            // 6. "Quét mã QR" Footer Label
-            ctx.fillStyle = "#3b82f6";
-            ctx.font = "700 13px Quicksand, sans-serif";
-            ctx.textAlign = "center";
-            ctx.fillText("📷 Quét mã QR", cx, 430);
+        function playRomanticChord(freq) {
+            if (!audioCtx || !isMusicOn) return;
+            const now = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = "sine";
+            osc.frequency.setValueAtTime(freq, now);
+            gain.gain.setValueAtTime(0.001, now);
+            gain.gain.linearRampToValueAtTime(0.13, now + 0.05);
+            gain.gain.exponentialRampToValueAtTime(0.0008, now + 1.5);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now);
+            osc.stop(now + 1.55);
         }
 
-        document.getElementById("presetPills").addEventListener("click", (e) => {
-            const btn = e.target.closest(".pill-btn");
-            if (!btn) return;
-            document.querySelectorAll("#presetPills .pill-btn").forEach((b) => b.classList.remove("active"));
-            btn.classList.add("active");
-            const p = PRESETS[btn.dataset.preset];
-            if (p) {
-                document.getElementById("msg1Input").value = p.m1;
-                document.getElementById("msg2Input").value = p.m2;
-                document.getElementById("wordsInput").value = p.words;
-                renderHeartQrStudio();
+        function startMelody() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === "suspended") audioCtx.resume();
+            isMusicOn = true;
+            if (!melodyTimer) {
+                playRomanticChord(MELODY[0]);
+                melodyTimer = setInterval(() => {
+                    if (!isMusicOn) return;
+                    mIdx = (mIdx + 1) % MELODY.length;
+                    playRomanticChord(MELODY[mIdx]);
+                }, 580);
+            }
+        }
+
+        const introOverlay = document.getElementById("scanIntroOverlay");
+        if (isInstant) {
+            introOverlay.classList.add("hidden-overlay");
+        }
+
+        function unlockAndOpen() {
+            introOverlay.classList.add("hidden-overlay");
+            startMelody();
+        }
+        document.getElementById("openGiftUniverseBtn").addEventListener("click", unlockAndOpen);
+        document.getElementById("tapHeartBox").addEventListener("click", unlockAndOpen);
+
+        document.getElementById("hudMusicBtn").addEventListener("click", (e) => {
+            if (!isMusicOn) {
+                startMelody();
+                e.target.textContent = "🎵";
+            } else {
+                isMusicOn = false;
+                e.target.textContent = "🔇";
             }
         });
-
-        document.getElementById("themeColorPills").addEventListener("click", (e) => {
-            const btn = e.target.closest(".pill-btn");
-            if (!btn) return;
-            document.querySelectorAll("#themeColorPills .pill-btn").forEach((b) => b.classList.remove("active"));
-            btn.classList.add("active");
-            selectedTheme = btn.dataset.theme;
-            renderHeartQrStudio();
-        });
-
-        ["msg1Input", "msg2Input", "wordsInput"].forEach((id) => {
-            document.getElementById(id).addEventListener("input", renderHeartQrStudio);
-        });
-
-        function downloadHeartQrImage() {
-            const canvas = document.getElementById("heartQrCanvas");
-            const a = document.createElement("a");
-            a.download = "thiep-qr-trai-tim-3d.png";
-            a.href = canvas.toDataURL("image/png");
-            a.click();
-            showToast("💾 Đã tải ảnh Thiệp QR Trái Tim Đỏ về máy!");
-        }
-        document.getElementById("downloadQrCardBtn").addEventListener("click", downloadHeartQrImage);
-        document.getElementById("topDownloadQrBtn").addEventListener("click", downloadHeartQrImage);
-
-        function copyGiftUrl() {
-            const { remoteUrl } = buildTargetUrls();
-            navigator.clipboard.writeText(remoteUrl);
-            showToast("📋 Đã copy đường dẫn món quà 3D!");
-        }
-        document.getElementById("copyShareUrlBtn").addEventListener("click", copyGiftUrl);
-        document.getElementById("topCopyLinkBtn").addEventListener("click", copyGiftUrl);
-
-        renderHeartQrStudio();
     </script>
 </body>
 </html>
